@@ -1,5 +1,5 @@
 import { StoreProvider } from "./Providers/Store/StoreProvider";
-import { RoutesProvider } from "./Providers/Router/RouterProvider";
+import { RoutesProvider } from "./Providers/Router/RoutesProvider";
 
 function App() {
   return (

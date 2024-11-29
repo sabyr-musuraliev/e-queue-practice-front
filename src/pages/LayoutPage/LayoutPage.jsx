@@ -1,8 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 
 const LayoutPage = () => {
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", height: "100vh" }}>
       <Outlet />
     </div>
   );

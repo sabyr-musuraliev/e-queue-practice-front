@@ -1,6 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router";
 import ErrorPage from "@pages/ErrorPage/ErrorPage";
 import LayoutPage from "@pages/LayoutPage/LayoutPage";
+import ProtectedRoute from "@shared/hoc/ProtectedRoutes";
+import OperatorPage from "@pages/OperatorPage/OperatorPage";
+import SpectatorPage from "@pages/SpectatorPage/SpectatorPage";
+import LoginPage from "@pages/LoginPage/LoginPage";
 
 export const router = createBrowserRouter([
   {
@@ -28,23 +32,6 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-      {
-        path: "specialist",
-        element: (
-          <ProtectedRoute>
-            <SpecialistPage />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "admin",
-        element: (
-          <ProtectedRoute>
-            <AdminPage />,
-          </ProtectedRoute>
-        ),
-      },
     ],
   },
-  { path: "/print", element: <PrintPage />, errorElement: <ErrorPage /> },
 ]);
