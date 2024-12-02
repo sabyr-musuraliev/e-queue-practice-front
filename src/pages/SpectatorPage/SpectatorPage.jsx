@@ -17,28 +17,28 @@ const SpectatorPage = () => {
   const { departmentId } = useAuth();
   const carsQueues = useSelector((state) => state.carQueues.carsQueues);
 
-  console.log(carsQueues);
+  console.log(departmentId);
 
   useEffect(() => {
     dispatch(getDepartmentsQueues(departmentId));
   }, []);
 
   useEffect(() => {
-    socket.emit("join-department", departmentId);
+    // socket.emit("join-department", departmentId);
 
     socket.on("call-students", (data) => {
       console.log(data);
-      updateQueue(data);
+      dispatch(updateQueue(data));
     });
 
     socket.on("start-practice", (data) => {
       console.log(data);
-      updateQueue(data);
+      dispatch(updateQueue(data));
     });
 
     socket.on("end-practice", (data) => {
       console.log(data);
-      removeQueue(data);
+      dispatch(removeQueue(data));
     });
 
     return () => {

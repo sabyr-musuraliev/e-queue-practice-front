@@ -28,6 +28,7 @@ export const carQueues = createSlice({
   initialState,
   reducers: {
     updateQueue: (state, action) => {
+      console.log(action.payload);
       state.carsQueues = state.carsQueues.filter(
         (item) => item.number !== action.payload.number,
       );
@@ -43,6 +44,7 @@ export const carQueues = createSlice({
       });
     },
     removeQueue: (state, action) => {
+      console.log(action);
       state.carsQueues = state.carsQueues.filter(
         (item) => item.number !== action.payload,
       );
