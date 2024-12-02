@@ -1,31 +1,57 @@
 import { Box, Typography } from "@mui/material";
+import { getTranslatedStatus } from "@shared/utils/translations-helpers";
+import { useDispatch } from "react-redux";
+import { updateActiveCarId } from "../model/carListSlice";
 
-const CarItem = () => {
+const CarItem = (props) => {
+  const { carId, carNumber, status, carType, isActive } = props;
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(updateActiveCarId(carId));
+  };
+
   return (
     <Box
       sx={{
-        background: "#fff",
+        background: `${isActive ? "#519FE8" : "#fff"}`,
         borderRadius: "5px",
         paddingLeft: "10px",
         position: "relative",
         cursor: "pointer",
       }}
+      onClick={handleClick}
     >
-      <Typography fontSize={16} padding={"6px"} marginTop={"7px"}>
-        Машина: <span style={{ fontWeight: "600" }}>1</span>
+      <Typography
+        fontSize={16}
+        padding={"6px"}
+        marginTop={"7px"}
+        color={isActive ? "#fff" : "#000"}
+      >
+        Машина: <span style={{ fontWeight: "600" }}>{carNumber}</span>
       </Typography>
-      <Typography fontSize={16} padding={"6px"}>
-        Категория: <span style={{ fontWeight: "600" }}>BA</span>
+      <Typography
+        fontSize={16}
+        padding={"6px"}
+        color={isActive ? "#fff" : "#000"}
+      >
+        Категория: <span style={{ fontWeight: "600" }}>{carType}</span>
       </Typography>
 
-      <Typography fontSize={16} padding={"6px"} marginBottom={"7px"}>
-        Кол-во студентов: <span style={{ fontWeight: "600" }}>Свободно</span>
+      <Typography
+        fontSize={16}
+        padding={"6px"}
+        marginBottom={"7px"}
+        color={isActive ? "#fff" : "#000"}
+      >
+        Статус:{" "}
+        <span style={{ fontWeight: "600" }}>{getTranslatedStatus(status)}</span>
       </Typography>
       <Box
         sx={{
           width: "10px",
           height: "100%",
-          background: "#F24747",
+          background: `${status === "available" ? "#5DE851" : "#F24747"}`,
           position: "absolute",
           top: 0,
           borderBottomRightRadius: "5px",

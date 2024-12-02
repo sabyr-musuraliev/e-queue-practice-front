@@ -21,7 +21,7 @@ const LoginPage = () => {
     if (userId) {
       navigate(role);
     }
-  }, [navigate, userId, role]);
+  }, []);
 
   const handleLogin = async () => {
     setResponseLoading(true);
