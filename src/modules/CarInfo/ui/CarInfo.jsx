@@ -36,6 +36,14 @@ const CarInfo = () => {
     queueList = <Typography margin={2}>Пока очереди нет</Typography>;
   }
 
+  if (car.carNumber === undefined || activeCarId === null) {
+    return (
+      <Typography variant="h4" margin={8} align="center">
+        Машина не выбрана
+      </Typography>
+    );
+  }
+
   return (
     <Box sx={{ display: "flex", width: "100%", justifyContent: "center" }}>
       <Box sx={{ width: "700px", marginTop: "50px" }}>

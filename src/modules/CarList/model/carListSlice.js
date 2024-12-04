@@ -104,7 +104,11 @@ export const carSlice = createSlice({
     builder.addCase(removeCar.fulfilled, (state, action) => {
       const carIdToRemove = action.payload.carId;
       state.cars = state.cars.filter((car) => car._id !== carIdToRemove);
-      state.activeCarId = state.cars[0]._id;
+      if (state.cars.length > 0) {
+        state.activeCarId = state.cars[0]._id;
+      } else {
+        state.activeCarId = null;
+      }
       state.loadingPost = false;
     });
     builder.addCase(removeCar.rejected, (state, action) => {

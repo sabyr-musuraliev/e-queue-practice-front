@@ -19,6 +19,7 @@ const OperatorPage = () => {
             padding: "7px",
             overflow: "auto",
             minHeight: "100%",
+            height: "100%",
           }}
         >
           <CarList />
