@@ -10,14 +10,13 @@ import {
   updateQueue,
   removeQueue,
 } from "@modules/CarQueues/model/carQueueSlice";
+import { playNotificationSound } from "../../shared/utils/notification";
 
 const SpectatorPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { departmentId } = useAuth();
   const carsQueues = useSelector((state) => state.carQueues.carsQueues);
-
-  console.log(departmentId);
 
   useEffect(() => {
     dispatch(getDepartmentsQueues(departmentId));
@@ -27,17 +26,15 @@ const SpectatorPage = () => {
     // socket.emit("join-department", departmentId);
 
     socket.on("call-students", (data) => {
-      console.log(data);
       dispatch(updateQueue(data));
+      playNotificationSound();
     });
 
     socket.on("start-practice", (data) => {
-      console.log(data);
       dispatch(updateQueue(data));
     });
 
     socket.on("end-practice", (data) => {
-      console.log(data);
       dispatch(removeQueue(data));
     });
 
@@ -67,7 +64,11 @@ const SpectatorPage = () => {
   ));
 
   if (carsQueues.length === 0) {
-    content = <Box>Нет сдающих студентов</Box>;
+    content = (
+      <Box sx={{ padding: "30px", fontSize: "24px", fontWeight: "600" }}>
+        Нет сдающих студентов
+      </Box>
+    );
   }
 
   return (
